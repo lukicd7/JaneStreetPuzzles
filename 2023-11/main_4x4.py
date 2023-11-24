@@ -3,15 +3,6 @@
 # https://www.janestreet.com/puzzles/current-puzzle/
 #########################
 
-# square = [[9,8,10,12,11,8,10,7],
-#           [7,9,11,9,10,12,14,12],
-#           [4,7,5,8,8,6,13,10],
-#           [4,10,7,9,6,8,7,9],
-#           [2,6,4,2,5,9,8,11],
-#           [0,3,1,4,2,7,10,7],
-#           [1,2,0,1,2,5,7,6],
-#           [0,2,4,3,5,6,2,4]]
-
 import numpy as np
 import sys
 
@@ -43,6 +34,9 @@ def print_array(my_array):
     print("\n")
 
 def movement(duration, new_pos):
+
+    print('-----------------\n-----------------')
+
     global total_duration
     global cur_pos
 
@@ -81,25 +75,28 @@ def movement(duration, new_pos):
             square[xo][yo] += duration / n
 
     print_array(square)
+    print('Moving from ', cur_pos, ' to ', new_pos)
     cur_pos = new_pos
-    new_height_old_pos = square[x][y]
+    z = square[x][y]
 
     # iterate number of visits grid to ensure we are <= 3
-    x, y = translate_pos(new_pos)
+    xnew, ynew = translate_pos(new_pos)
     global num_visits
-    num_visits[x][y] += 1
+    num_visits[xnew][ynew] += 1
 
-    # checking difference in height between positions we move to and from
-    # new_height_new_pos - new_height_old_pos MUST be in (0, 1, 2)
-    # TODO: I am unsure if I can make jumps of -2 or -1, will allow it for now
-    new_height_new_pos = square[x][y]
-    print("Height changed from ", old_height_old_pos, " to ", new_height_old_pos)
-    print("Travelling to height of ", new_height_new_pos, ", height diff of ", new_height_new_pos - new_height_old_pos)
-    if not (new_height_new_pos - new_height_old_pos in [-2, -1, 0, 1, 2]):
+    # define positions as:
+    # x: horizontal (negative is left), ynew - y
+    # y: vertical (negative is down), xnew - x
+    # z: height / altitude, znew - z
+    # x, y, z must be like a knight, one MUST be 0, another MUST be -/+ 1, another MUST be -/+ 2
+    znew = square[xnew][ynew]
+    xcheck = abs(xnew - x)
+    ycheck = abs(ynew - y)
+    zcheck = abs(znew - z)
+    print('X: ', xcheck, ', Y: ', ycheck, ', Z: ', zcheck)
+    if not ((0 in [xcheck, ycheck, zcheck]) and 1 in [xcheck, ycheck, zcheck] and 2 in [xcheck, ycheck, zcheck]):
         print("CANNOT TRAVEL THIS HEIHT DIFFERENCE")
         sys.exit()
-
-
 
 
 #########################
@@ -135,4 +132,5 @@ movement(0, "a4")
 movement(0, "b4")
 movement(0, "d4")
 
+print('\n')
 print_array(num_visits)
