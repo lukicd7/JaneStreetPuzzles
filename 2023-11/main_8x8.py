@@ -126,6 +126,7 @@ print_array(square)
 
 movement(0, "c2")
 movement(0, "a2")
+
 movement(9, "a3")
 movement(0, "a4")
 movement(0, "a5")
@@ -135,41 +136,35 @@ movement(0, "f2")
 movement(0, "f3")
 movement(0, "g5")
 movement(0, "h5")
+
 movement(6, "h6")
 movement(0, "g8")
 movement(0, "e8")
 movement(0, "c7")
 
-movement(15, "a7")
-movement(0, "c7")
-movement(0, "d7")
+movement(15, "d7")
+
 movement(12, "b6")
 movement(0, "d7")
-movement(76, "c5") # dragan thinks the trick might be dropping the 8 & 7s to a 1 instead of a 3
+
+movement(76, "c5")
 movement(0, "b3")
 movement(0, "b1")
 movement(0, "c1")
 movement(0, "e1")
 movement(0, "e2")
+
 movement(5, "d4")
 movement(0, "c4")
 movement(0, "a5")
 movement(0, "c5")
 movement(0, "c6")
 
-# issue on a5, c5, c4
-# trying to insert a new move set to wait on 3s in cell d6
-# movement(3, "a5")
-# movement(0, "c4")
-# movement(0, "d4")
-
-# have to take this path to reduce steps from 4x to 3x
 movement(3, "e6")
 movement(0, "e4")
 movement(0, "d4")
-
-
 movement(0, "d6")
+
 movement(60, "b7")
 movement(0, "c5")
 movement(0, "e6")
@@ -179,13 +174,12 @@ movement(0, "d4")
 movement(0, "c4")
 movement(0, "a5")
 movement(0, "c6")
-
-# resume the rest of the run
 movement(0, "c7")
 movement(0, "d7")
 movement(0, "e7")
 movement(0, "f7")
 movement(0, "g7")
+
 movement(1, "h7")
 movement(0, "h8")
 
